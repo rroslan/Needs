@@ -11,6 +11,7 @@ import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(
                     // Get an instance of AuthUI based on the default app
                     AuthUI.getInstance().createSignInIntentBuilder()
-                            .setAvailableProviders(Arrays.asList( phoneConfigWithDefaultNumber))
+                            .setAvailableProviders(Collections.singletonList( phoneConfigWithDefaultNumber))
                             .build(),
                     RC_SIGN_IN);
         }
