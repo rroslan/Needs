@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
                     // Get an instance of AuthUI based on the default app
                     AuthUI.getInstance().createSignInIntentBuilder()
                             .setAvailableProviders(Collections.singletonList( phoneConfigWithDefaultNumber))
+                            .setTosUrl("https://www.eastservices.biz")
+                            .setPrivacyPolicyUrl("https://www.eastservices.biz")
                             .build(),
                     RC_SIGN_IN);
         }
