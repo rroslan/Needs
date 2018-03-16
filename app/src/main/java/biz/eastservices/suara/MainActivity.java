@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
             AuthUI.IdpConfig phoneConfigWithDefaultNumber = new AuthUI.IdpConfig.PhoneBuilder()
-                    .setDefaultCountryIso("my")
+                    .setDefaultNumber("my","1")
                     .build();
             startActivityForResult(
                     // Get an instance of AuthUI based on the default app
