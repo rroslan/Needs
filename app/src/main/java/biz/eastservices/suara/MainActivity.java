@@ -10,7 +10,6 @@ import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(this,HomeActivity.class).putExtra("phone",FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber()));
+            startActivity(new Intent(this,EmployerActivity.class).putExtra("phone",FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber()));
             finish();
 
         } else {
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Successfully signed in
             if (resultCode == RESULT_OK) {
-                startActivity(new Intent(this,HomeActivity.class));
+                startActivity(new Intent(this,EmployerActivity.class));
 
                 finish();
             } else {
