@@ -206,7 +206,7 @@ public class EmployerActivity extends AppCompatActivity implements
             return;
         }
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-        bottomNavigationView.setSelectedItemId(R.id.action_jobs);
+        bottomNavigationView.setSelectedItemId(R.id.action_any);
     }
 
     @Override

@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Needs</string>
-    <string name="candidate_string">I Need...</string>
-    <string name="employer_string">I am offering...</string>
     <string name="settings_string">Settings</string>
     <string name="profile_string">Profile</string>
     <string name="save_string">Save</string>
@@ -13,7 +11,6 @@
     <string name="phone_string">Phone</string>
     <string name="any_string">Any</string>
     <string name="services_string">Services</string>
-    <string name="helps_string">Helps</string>
     <string name="transports_string">Transports</string>
     <string name="sell_string">Sell</string>
     <string name="buy_string">Buy</string>
