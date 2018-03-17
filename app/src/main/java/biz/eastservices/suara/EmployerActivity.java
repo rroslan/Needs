@@ -234,7 +234,7 @@ public class EmployerActivity extends AppCompatActivity implements
         {
             if(mLastLocation != null) {
                 String locationString = new StringBuilder(String.valueOf(mLastLocation.getLatitude()))
-                        .append("/")
+                        .append(",")
                         .append(mLastLocation.getLongitude())
                         .toString();
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
