@@ -35,10 +35,10 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_buy"
+        android:id="@+id/action_rent"
         android:enabled="true"
         android:icon="@drawable/ic_store_mall_directory_black_24dp"
-        android:title="@string/buy_string"
+        android:title="@string/rent_string"
         app:showAsAction="ifRoom" />
 
 </menu>

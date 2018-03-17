@@ -33,7 +33,7 @@ public class Common {
         else if (type ==3)
             return "Sell";
         else if (type ==4)
-            return "Buy";
+            return "Rent";
         else
             return "null";
     }
@@ -48,7 +48,7 @@ public class Common {
             return 2;
         else if (type.equals("Sell"))
             return 3;
-        else if (type.equals("Buy"))
+        else if (type.equals("Rent"))
             return 4;
         else
             return -1;
