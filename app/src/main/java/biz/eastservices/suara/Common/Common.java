@@ -13,7 +13,7 @@ public class Common {
     public static final String USER_RATING = "Rating";
 
 
-    public static boolean isDebug = true;
+    public static boolean isDebug = false;
 
     public static final String USER_TABLE_CANDIDATE_LOCATION = "CandidateLocations";
     public static final int PICK_IMAGE_REQUEST = 8881;

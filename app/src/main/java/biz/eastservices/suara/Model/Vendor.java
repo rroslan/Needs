@@ -8,16 +8,18 @@ public class Vendor {
     private String businessName;
     private String businessDescription;
     private boolean isWorking;
+    private boolean isStaticLocation;
     private String category;
     private String avatarUrl;
 
     public Vendor() {
     }
 
-    public Vendor(String businessName, String businessDescription, boolean isWorking, String category, String avatarUrl) {
+    public Vendor(String businessName, String businessDescription, boolean isWorking, boolean isStaticLocation, String category, String avatarUrl) {
         this.businessName = businessName;
         this.businessDescription = businessDescription;
         this.isWorking = isWorking;
+        this.isStaticLocation = isStaticLocation;
         this.category = category;
         this.avatarUrl = avatarUrl;
     }
@@ -44,6 +46,14 @@ public class Vendor {
 
     public void setWorking(boolean working) {
         isWorking = working;
+    }
+
+    public boolean isStaticLocation() {
+        return isStaticLocation;
+    }
+
+    public void setStaticLocation(boolean staticLocation) {
+        isStaticLocation = staticLocation;
     }
 
     public String getCategory() {

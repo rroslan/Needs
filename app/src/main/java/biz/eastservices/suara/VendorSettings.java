@@ -145,7 +145,8 @@ public class VendorSettings extends AppCompatActivity {
                                 edtDescription.setText(user.getBusinessDescription());
                                 if(user.isWorking())
                                     rdiWorking.setChecked(true);
-                                else
+
+                                if(user.isStaticLocation())
                                     rdiStaticLocation.setChecked(true);
 
                                 if(user.getCategory() != null) {
@@ -235,6 +236,7 @@ public class VendorSettings extends AppCompatActivity {
         vendor.setBusinessName(name);
         vendor.setBusinessDescription(description);
         vendor.setWorking(rdiWorking.isChecked());
+        vendor.setStaticLocation(rdiStaticLocation.isChecked());
         vendor.setCategory(Common.convertTypeToCategory(defaultRadioSelect));
 
        if(!Common.isDebug)

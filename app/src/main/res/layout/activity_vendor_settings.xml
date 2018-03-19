@@ -103,7 +103,7 @@
 
                 </LinearLayout>
 
-                <RadioGroup
+                <LinearLayout
                     android:orientation="horizontal"
                     android:weightSum="2"
                     android:layout_width="match_parent"
@@ -111,7 +111,6 @@
 
                     <RadioButton
                         android:id="@+id/rdi_working"
-                        android:checked="true"
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content" />
@@ -126,7 +125,7 @@
 
 
 
-                </RadioGroup>
+                </LinearLayout>
 
             </LinearLayout>
 
