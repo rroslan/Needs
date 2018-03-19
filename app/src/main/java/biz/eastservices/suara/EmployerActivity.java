@@ -66,7 +66,6 @@ public class EmployerActivity extends AppCompatActivity implements
     GeoFire geoFire;
 
 
-    boolean isDebug=false;
 
 
     @Override
@@ -110,10 +109,10 @@ public class EmployerActivity extends AppCompatActivity implements
 
         //Init Firebase
         database = FirebaseDatabase.getInstance();
-        user_tbl = database.getReference(Common.USER_TABLE_EMPLOYER);
+        user_tbl = database.getReference(Common.USER_TABLE_VENDOR);
 
 
-        if(!isDebug) {
+        if(!Common.isDebug) {
             user_tbl.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -121,7 +120,27 @@ public class EmployerActivity extends AppCompatActivity implements
                             if (!dataSnapshot.exists()) {
 
                                 //Need update Setting
-                                // startActivity(new Intent(EmployerActivity.this, EmployerSettings.class));
+                                startActivity(new Intent(EmployerActivity.this, VendorSettings.class));
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+        }
+        else
+        {
+            user_tbl.child("c5f7ddd0-58c9-4920-849e-8f1fe8f0f096")
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (!dataSnapshot.exists()) {
+
+                                //Need update Setting
+                                startActivity(new Intent(EmployerActivity.this, VendorSettings.class));
 
                             }
                         }
@@ -182,21 +201,66 @@ public class EmployerActivity extends AppCompatActivity implements
     @Override
     public void onLocationChanged(Location location) {
         mLastLocation = location;
-        Map<String,Object> update_location = new HashMap<>();
+        updateLocation(mLastLocation);
+    }
+
+    private void updateLocation(Location location) {
+
+        final Map<String,Object> update_location = new HashMap<>();
         update_location.put("lat",mLastLocation.getLatitude());
         update_location.put("lng",mLastLocation.getLongitude());
-        if(!isDebug) {
+        if(!Common.isDebug) {
             user_tbl.child(FirebaseAuth.getInstance().getUid())
-                    .updateChildren(update_location)
-                    .addOnFailureListener(new OnFailureListener() {
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(EmployerActivity.this, "Error update location", Toast.LENGTH_SHORT).show();
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists())
+                            {
+                                user_tbl.child(FirebaseAuth.getInstance().getUid())
+                                        .updateChildren(update_location)
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(EmployerActivity.this, "Error update location", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+        }
+        else
+        {
+
+
+            user_tbl.child("c5f7ddd0-58c9-4920-849e-8f1fe8f0f096")
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists())
+                            {
+                                user_tbl.child("c5f7ddd0-58c9-4920-849e-8f1fe8f0f096")
+                                        .updateChildren(update_location)
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(EmployerActivity.this, "Error update location", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
                         }
                     });
         }
     }
-
 
 
     @Override
@@ -228,7 +292,7 @@ public class EmployerActivity extends AppCompatActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_setting) {
-            //startActivity(new Intent(EmployerActivity.this, EmployerSettings.class));
+            startActivity(new Intent(EmployerActivity.this, VendorSettings.class));
         }
         else if(item.getItemId() == R.id.action_copy)
         {
@@ -247,5 +311,12 @@ public class EmployerActivity extends AppCompatActivity implements
                 Toast.makeText(this, "No location to copy ! Please enable INTERNET", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(mLastLocation != null)
+            updateLocation(mLastLocation);
     }
 }

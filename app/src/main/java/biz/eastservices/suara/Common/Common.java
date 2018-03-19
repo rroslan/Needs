@@ -8,11 +8,12 @@ import android.location.Location;
 
 public class Common {
     //Database define
-    public static final String USER_TABLE_CANDIDATE = "Candidates";
-    public static final String USER_TABLE_EMPLOYER = "Employers";
+
+    public static final String USER_TABLE_VENDOR="Vendors";
     public static final String USER_RATING = "Rating";
 
 
+    public static boolean isDebug = true;
 
     public static final String USER_TABLE_CANDIDATE_LOCATION = "CandidateLocations";
     public static final int PICK_IMAGE_REQUEST = 8881;
