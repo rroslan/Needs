@@ -74,7 +74,7 @@ public class EmployerActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_employer);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getResources().getString(R.string.any_string));
+        toolbar.setTitle(getResources().getString(R.string.deliveries_string));
         setSupportActionBar(toolbar);
 
         //Request Runtime permission

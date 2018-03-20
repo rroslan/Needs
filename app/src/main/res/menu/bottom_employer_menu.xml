@@ -7,7 +7,7 @@
         android:id="@+id/action_any"
         android:enabled="true"
         android:icon="@drawable/ic_business_center_black_24dp"
-        android:title="@string/any_string"
+        android:title="@string/deliveries_string"
         app:showAsAction="ifRoom" />
 
 

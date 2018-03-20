@@ -36,7 +36,7 @@ public class VendorSettings extends AppCompatActivity {
 
     Button btnSave;
     MaterialEditText edtName, edtDescription;
-    RadioButton rdiWorking, rdiStaticLocation, rdiAny, rdiServices, rdiTransports, rdiSell, rdiRent;
+    RadioButton rdiWorking, rdiStaticLocation, rdiDeliveries, rdiServices, rdiTransports, rdiSell, rdiRent;
 
     CircleImageView avatar;
 
@@ -59,7 +59,7 @@ public class VendorSettings extends AppCompatActivity {
         btnSave = (Button) findViewById(R.id.btn_save);
         edtName = (MaterialEditText) findViewById(R.id.edt_name);
         edtDescription = (MaterialEditText) findViewById(R.id.edt_description);
-        rdiAny = (RadioButton) findViewById(R.id.rdi_any);
+        rdiDeliveries = (RadioButton) findViewById(R.id.rdi_deliveries);
         rdiRent = (RadioButton) findViewById(R.id.rdi_rent);
         rdiSell = (RadioButton) findViewById(R.id.rdi_sell);
         rdiServices = (RadioButton) findViewById(R.id.rdi_services);
@@ -77,7 +77,7 @@ public class VendorSettings extends AppCompatActivity {
             }
         });
 
-        rdiAny.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        rdiDeliveries.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked)
@@ -151,7 +151,7 @@ public class VendorSettings extends AppCompatActivity {
 
                                 if(user.getCategory() != null) {
                                     if (Common.convertCategoryToType(user.getCategory()) == 0)
-                                        rdiAny.setChecked(true);
+                                        rdiDeliveries.setChecked(true);
                                     else if (Common.convertCategoryToType(user.getCategory()) == 1)
                                         rdiServices.setChecked(true);
                                     else if (Common.convertCategoryToType(user.getCategory()) == 2)
@@ -196,7 +196,7 @@ public class VendorSettings extends AppCompatActivity {
 
                                if(user.getCategory() != null) {
                                    if (Common.convertCategoryToType(user.getCategory()) == 0)
-                                       rdiAny.setChecked(true);
+                                       rdiDeliveries.setChecked(true);
                                    else if (Common.convertCategoryToType(user.getCategory()) == 1)
                                        rdiServices.setChecked(true);
                                    else if (Common.convertCategoryToType(user.getCategory()) == 2)
