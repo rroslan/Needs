@@ -9,7 +9,7 @@
     <string name="name_string">Name</string>
     <string name="description_string">Description</string>
     <string name="phone_string">Phone</string>
-    <string name="any_string">Any</string>
+    <string name="deliveries_string">Deliveries</string>
     <string name="services_string">Services</string>
     <string name="transports_string">Transports</string>
     <string name="sell_string">Sell</string>
