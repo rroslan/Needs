@@ -26,7 +26,7 @@ public class Common {
     public static String convertTypeToCategory(int type)
     {
         if (type ==0)
-            return "Any";
+            return "Deliveries";
         else if (type ==1)
             return "Services";
         else if (type ==2)
@@ -41,7 +41,7 @@ public class Common {
 
     public static int convertCategoryToType(String type)
     {
-        if (type.equals("Any"))
+        if (type.equals("Deliveries"))
             return 0;
         else if (type.equals("Services"))
             return 1;

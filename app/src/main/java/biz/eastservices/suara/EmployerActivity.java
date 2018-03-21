@@ -112,46 +112,46 @@ public class EmployerActivity extends AppCompatActivity implements
         user_tbl = database.getReference(Common.USER_TABLE_VENDOR);
 
 
-        if(!Common.isDebug) {
-            user_tbl.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (!dataSnapshot.exists()) {
-
-                                //Need update Setting
-                                startActivity(new Intent(EmployerActivity.this, VendorSettings.class));
-
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-        }
-        else
-        {
-            user_tbl.child("c5f7ddd0-58c9-4920-849e-8f1fe8f0f096")
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (!dataSnapshot.exists()) {
-
-                                //Need update Setting
-                                startActivity(new Intent(EmployerActivity.this, VendorSettings.class));
-
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-        }
-    }
+////        if(!Common.isDebug) {
+//////            user_tbl.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//////                    .addListenerForSingleValueEvent(new ValueEventListener() {
+//////                        @Override
+//////                        public void onDataChange(DataSnapshot dataSnapshot) {
+//////                            if (!dataSnapshot.exists()) {
+//////
+//////                                //Need update Setting
+//////                                startActivity(new Intent(EmployerActivity.this, VendorSettings.class));
+//////
+//////                            }
+//////                        }
+//////
+//////                        @Override
+//////                        public void onCancelled(DatabaseError databaseError) {
+//////
+//////                        }
+//////                    });
+////        }
+////        else
+////        {
+//            user_tbl.child("c5f7ddd0-58c9-4920-849e-8f1fe8f0f096")
+//                    .addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(DataSnapshot dataSnapshot) {
+//                            if (!dataSnapshot.exists()) {
+//
+//                                //Need update Setting
+//                                startActivity(new Intent(EmployerActivity.this, VendorSettings.class));
+//
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(DatabaseError databaseError) {
+//
+//                        }
+//                    });
+//        }
+}
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
