@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import biz.eastservices.suara.Common.Common;
+import biz.eastservices.suara.Model.Vendor;
 
 public class EmployerActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -216,14 +217,30 @@ public class EmployerActivity extends AppCompatActivity implements
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if(dataSnapshot.exists())
                             {
-                                user_tbl.child(FirebaseAuth.getInstance().getUid())
-                                        .updateChildren(update_location)
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(EmployerActivity.this, "Error update location", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
+                                Vendor vendor = dataSnapshot.getValue(Vendor.class);
+                                if(vendor.isStaticLocation())
+                                {
+                                   if(!dataSnapshot.hasChild("lat") && !dataSnapshot.hasChild("lng"))
+                                       user_tbl.child(FirebaseAuth.getInstance().getUid())
+                                               .updateChildren(update_location)
+                                               .addOnFailureListener(new OnFailureListener() {
+                                                   @Override
+                                                   public void onFailure(@NonNull Exception e) {
+                                                       Toast.makeText(EmployerActivity.this, "Error update location", Toast.LENGTH_SHORT).show();
+                                                   }
+                                               });
+                                }
+                                else
+                                {
+                                    user_tbl.child(FirebaseAuth.getInstance().getUid())
+                                            .updateChildren(update_location)
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(EmployerActivity.this, "Error update location", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                }
                             }
                         }
 
