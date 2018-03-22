@@ -15,7 +15,7 @@ public class Common {
     public static final String USER_RATING = "Rating";
 
 
-    public static boolean isDebug = false;
+    public static boolean isDebug = true;
 
     public static Vendor currentVendor;
 

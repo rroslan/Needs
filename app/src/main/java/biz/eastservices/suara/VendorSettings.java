@@ -243,9 +243,11 @@ public class VendorSettings extends AppCompatActivity {
         vendor.setBusinessDescription(description);
         vendor.setWorking(isWorking.isChecked());
         vendor.setCategory(Common.convertTypeToCategory(defaultRadioSelect));
-        if(Common.currentVendor.getAvatarUrl()!=null)
-            if(!Common.currentVendor.getAvatarUrl().isEmpty())
-                vendor.setAvatarUrl(Common.currentVendor.getAvatarUrl());
+        if(Common.currentVendor != null) {
+            if (Common.currentVendor.getAvatarUrl() != null)
+                if (!Common.currentVendor.getAvatarUrl().isEmpty())
+                    vendor.setAvatarUrl(Common.currentVendor.getAvatarUrl());
+        }
 
        if(!Common.isDebug)
        {

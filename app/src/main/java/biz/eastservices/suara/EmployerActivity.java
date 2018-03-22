@@ -210,14 +210,27 @@ public class EmployerActivity extends AppCompatActivity implements
         final Map<String,Object> update_location = new HashMap<>();
         update_location.put("lat",mLastLocation.getLatitude());
         update_location.put("lng",mLastLocation.getLongitude());
-        user_tbl.child(FirebaseAuth.getInstance().getUid())
-                .updateChildren(update_location)
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(EmployerActivity.this, "Error update location", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        if(!Common.isDebug) {
+            user_tbl.child(FirebaseAuth.getInstance().getUid())
+                    .updateChildren(update_location)
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(EmployerActivity.this, "Error update location", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+        else{
+            user_tbl.child("c5f7ddd0-58c9-4920-849e-8f1fe8f0f096")
+                    .updateChildren(update_location)
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(EmployerActivity.this, "Error update location", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+
     }
 
 
