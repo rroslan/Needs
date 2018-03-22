@@ -2,6 +2,8 @@ package biz.eastservices.suara.Common;
 
 import android.location.Location;
 
+import biz.eastservices.suara.Model.Vendor;
+
 /**
  * Created by reale on 3/17/2018.
  */
@@ -14,6 +16,8 @@ public class Common {
 
 
     public static boolean isDebug = false;
+
+    public static Vendor currentVendor;
 
     public static final String USER_TABLE_CANDIDATE_LOCATION = "CandidateLocations";
     public static final int PICK_IMAGE_REQUEST = 8881;
