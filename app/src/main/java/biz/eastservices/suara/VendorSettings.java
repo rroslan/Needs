@@ -136,9 +136,12 @@ public class VendorSettings extends AppCompatActivity {
                             {
                                 Vendor user = dataSnapshot.getValue(Vendor.class);
 
-                                if(!user.getAvatarUrl().isEmpty() && user.getAvatarUrl() != null)
-                                    Picasso.with(getBaseContext())
-                                            .load(vendor.getAvatarUrl())
+                                if( user.getAvatarUrl() != null)
+                                    if(!user.getAvatarUrl().isEmpty())
+                                            Picasso.with(getBaseContext())
+                                            .load(user.getAvatarUrl())
+                                            .placeholder(R.drawable.ic_terrain_black_24dp)
+                                            .error(R.drawable.ic_error_black_24dp)
                                             .into(avatar);
 
                                 edtName.setText(user.getBusinessName());
@@ -248,6 +251,7 @@ public class VendorSettings extends AppCompatActivity {
                        @Override
                        public void onSuccess(Void aVoid) {
                            Toast.makeText(VendorSettings.this, "Updated !", Toast.LENGTH_SHORT).show();
+                           finish();
                        }
                    })
                    .addOnFailureListener(new OnFailureListener() {

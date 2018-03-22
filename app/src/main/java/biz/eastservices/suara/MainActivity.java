@@ -22,8 +22,25 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(this,EmployerActivity.class).putExtra("phone",FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber()));
-            finish();
+           if(auth.getCurrentUser().getPhoneNumber() != null && !auth.getCurrentUser().getPhoneNumber().isEmpty()) {
+               startActivity(new Intent(this, EmployerActivity.class).putExtra("phone", FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber()));
+               finish();
+           }
+           else {
+               AuthUI.IdpConfig phoneConfigWithDefaultNumber = new AuthUI.IdpConfig.PhoneBuilder()
+                       .setDefaultNumber("my","1")
+                       .build();
+               startActivityForResult(
+                       // Get an instance of AuthUI based on the default app
+                       AuthUI.getInstance().createSignInIntentBuilder()
+                               .setAvailableProviders(Collections.singletonList( phoneConfigWithDefaultNumber))
+                               .setTosUrl("https://www.eastservices.biz")
+                               .setPrivacyPolicyUrl("https://www.eastservices.biz")
+                               .build(),
+                       RC_SIGN_IN);
+           }
+
+
 
         } else {
             AuthUI.IdpConfig phoneConfigWithDefaultNumber = new AuthUI.IdpConfig.PhoneBuilder()
