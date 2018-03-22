@@ -7,19 +7,22 @@ package biz.eastservices.suara.Model;
 public class Vendor {
     private String businessName;
     private String businessDescription;
-    private boolean isWorking;
+
     private String category;
     private String avatarUrl;
+
+    private double lat,lng;
 
     public Vendor() {
     }
 
-    public Vendor(String businessName, String businessDescription, boolean isWorking, String category, String avatarUrl) {
+    public Vendor(String businessName, String businessDescription, String category, String avatarUrl, double lat, double lng) {
         this.businessName = businessName;
         this.businessDescription = businessDescription;
-        this.isWorking = isWorking;
         this.category = category;
         this.avatarUrl = avatarUrl;
+        this.lat = lat;
+        this.lng = lng;
     }
 
     public String getBusinessName() {
@@ -38,14 +41,6 @@ public class Vendor {
         this.businessDescription = businessDescription;
     }
 
-    public boolean isWorking() {
-        return isWorking;
-    }
-
-    public void setWorking(boolean working) {
-        isWorking = working;
-    }
-
     public String getCategory() {
         return category;
     }
@@ -60,5 +55,21 @@ public class Vendor {
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 }
