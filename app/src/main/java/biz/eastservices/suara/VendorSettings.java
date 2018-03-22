@@ -25,7 +25,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.squareup.picasso.Picasso;
-import com.suke.widget.SwitchButton;
+
 
 import java.util.UUID;
 
@@ -38,7 +38,6 @@ public class VendorSettings extends AppCompatActivity {
     Button btnSave;
     MaterialEditText edtName, edtDescription;
     RadioButton  rdiDeliveries, rdiServices, rdiTransports, rdiSell, rdiRent;
-    SwitchButton isWorking;
 
     CircleImageView avatar;
 
@@ -65,7 +64,7 @@ public class VendorSettings extends AppCompatActivity {
         rdiRent = (RadioButton) findViewById(R.id.rdi_rent);
         rdiSell = (RadioButton) findViewById(R.id.rdi_sell);
         rdiServices = (RadioButton) findViewById(R.id.rdi_services);
-        isWorking = (SwitchButton)findViewById(R.id.switch_button);
+
         rdiTransports= (RadioButton) findViewById(R.id.rdi_transport);
         avatar = (CircleImageView)findViewById(R.id.profile_image);
         avatar.setOnClickListener(new View.OnClickListener() {
@@ -148,10 +147,7 @@ public class VendorSettings extends AppCompatActivity {
 
                                 edtName.setText(user.getBusinessName());
                                 edtDescription.setText(user.getBusinessDescription());
-                                if(user.isWorking())
-                                    isWorking.setChecked(true);
-                                else
-                                    isWorking.setChecked(false);
+
 
 
 
@@ -195,10 +191,7 @@ public class VendorSettings extends AppCompatActivity {
 
                                edtName.setText(user.getBusinessName());
                                edtDescription.setText(user.getBusinessDescription());
-                               if(user.isWorking())
-                                   isWorking.setChecked(true);
-                               else
-                                   isWorking.setChecked(false);
+
 
                                if(user.getCategory() != null) {
                                    if (Common.convertCategoryToType(user.getCategory()) == 0)
@@ -241,7 +234,7 @@ public class VendorSettings extends AppCompatActivity {
 
         vendor.setBusinessName(name);
         vendor.setBusinessDescription(description);
-        vendor.setWorking(isWorking.isChecked());
+
         vendor.setCategory(Common.convertTypeToCategory(defaultRadioSelect));
         if(Common.currentVendor != null) {
             if (Common.currentVendor.getAvatarUrl() != null)
