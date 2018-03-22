@@ -16,7 +16,7 @@ public class Common {
     public static final String VENDOR_LOCATION ="vendorLocation" ;
 
 
-    public static boolean isDebug = true;
+    public static boolean isDebug = false;
 
     public static Vendor currentVendor;
 
