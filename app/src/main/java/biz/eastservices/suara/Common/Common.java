@@ -9,10 +9,11 @@ import biz.eastservices.suara.Model.Vendor;
  */
 
 public class Common {
-    //Database define
-
     public static final String USER_TABLE_VENDOR="Vendors";
+    public static final String VENDOR_ONLINE="vendorsOnline";
     public static final String USER_RATING = "Rating";
+    public static final int RESULT_CODE = 7777 ;
+    public static final String VENDOR_LOCATION ="vendorLocation" ;
 
 
     public static boolean isDebug = true;
@@ -34,7 +35,7 @@ public class Common {
         else if (type ==1)
             return "Services";
         else if (type ==2)
-            return "Transport";
+            return "Transports";
         else if (type ==3)
             return "Sell";
         else if (type ==4)
@@ -49,7 +50,7 @@ public class Common {
             return 0;
         else if (type.equals("Services"))
             return 1;
-        else if (type.equals("Transport"))
+        else if (type.equals("Transports"))
             return 2;
         else if (type.equals("Sell"))
             return 3;
