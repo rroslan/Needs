@@ -369,7 +369,7 @@ public class EmployerActivity extends AppCompatActivity implements
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Toast.makeText(EmployerActivity.this, "Online Current Location", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EmployerActivity.this, "Online Vendor Current Location", Toast.LENGTH_SHORT).show();
                     setAvailableVendor();
 
 
