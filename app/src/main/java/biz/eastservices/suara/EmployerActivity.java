@@ -375,7 +375,7 @@ public class EmployerActivity extends AppCompatActivity implements
 
 
                 } else {
-                    Toast.makeText(EmployerActivity.this, "Offline", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EmployerActivity.this, "Offline Vendor", Toast.LENGTH_SHORT).show();
                     removeAvailableVendor();
 
 
