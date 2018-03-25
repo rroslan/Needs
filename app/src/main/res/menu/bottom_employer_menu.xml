@@ -31,7 +31,7 @@
         android:id="@+id/action_sell"
         android:enabled="true"
         android:icon="@drawable/ic_attach_money_black_24dp"
-        android:title="@string/sell_string"
+        android:title="@string/buy_string"
         app:showAsAction="ifRoom" />
 
     <item
