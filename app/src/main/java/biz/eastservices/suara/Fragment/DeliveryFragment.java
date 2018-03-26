@@ -24,6 +24,7 @@ import biz.eastservices.suara.Common.Common;
 import biz.eastservices.suara.Interface.ItemClickListener;
 import biz.eastservices.suara.Model.Vendor;
 import biz.eastservices.suara.R;
+import biz.eastservices.suara.VendorDetail;
 import biz.eastservices.suara.ViewHolder.ListVendorViewHolder;
 
 /**
@@ -70,7 +71,7 @@ public class DeliveryFragment extends Fragment {
 
         adapter = new FirebaseRecyclerAdapter<Vendor, ListVendorViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ListVendorViewHolder holder, int position, @NonNull Vendor model) {
+            protected void onBindViewHolder(@NonNull ListVendorViewHolder holder, int position, @NonNull final Vendor model) {
                 Location candidateLocation = new Location(LocationManager.NETWORK_PROVIDER);
                 candidateLocation.setLatitude(model.getLat());
                 candidateLocation.setLongitude(model.getLng());
@@ -84,7 +85,8 @@ public class DeliveryFragment extends Fragment {
                         @Override
                         public void onClick(View view, int position) {
                             Common.selected_uid_people = adapter.getRef(position).getKey();
-                            //startActivity(new Intent(getActivity(), CandidateDetail.class));
+                            Common.currentVendor = model;
+                            startActivity(new Intent(getActivity(), VendorDetail.class));
 
                         }
                     });
