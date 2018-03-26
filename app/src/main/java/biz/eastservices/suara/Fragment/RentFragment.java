@@ -1,5 +1,7 @@
 package biz.eastservices.suara.Fragment;
 
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -17,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import biz.eastservices.suara.Common.Common;
+import biz.eastservices.suara.Interface.ItemClickListener;
 import biz.eastservices.suara.Model.Vendor;
 import biz.eastservices.suara.R;
 import biz.eastservices.suara.ViewHolder.ListVendorViewHolder;
@@ -41,12 +44,13 @@ public class RentFragment extends Fragment {
     RecyclerView recyclerView;
     SwipeRefreshLayout swipeRefreshLayout;
 
+    private static Location mLocation;
 
-
-    public static RentFragment getInstance()
+    public static RentFragment getInstance(Location location)
     {
         if(INSTANCE == null)
             INSTANCE = new RentFragment();
+        mLocation = location;
         return INSTANCE;
     }
 
@@ -67,8 +71,26 @@ public class RentFragment extends Fragment {
         adapter = new FirebaseRecyclerAdapter<Vendor, ListVendorViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull ListVendorViewHolder holder, int position, @NonNull Vendor model) {
-                holder.txt_description.setText(model.getBusinessDescription());
-                holder.txt_name.setText(model.getBusinessName());
+                Location candidateLocation = new Location(LocationManager.NETWORK_PROVIDER);
+                candidateLocation.setLatitude(model.getLat());
+                candidateLocation.setLongitude(model.getLng());
+                double distanceInKm = (mLocation.distanceTo(candidateLocation))/1000;
+                if(distanceInKm <= 30) // 30km
+                {
+                    holder.txt_description.setText(model.getBusinessDescription());
+                    holder.txt_name.setText(model.getBusinessName());
+
+                    holder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position) {
+                            Common.selected_uid_people = adapter.getRef(position).getKey();
+                            //startActivity(new Intent(getActivity(), CandidateDetail.class));
+
+                        }
+                    });
+                }
+                else
+                    holder.hideLayout();
             }
 
             @Override

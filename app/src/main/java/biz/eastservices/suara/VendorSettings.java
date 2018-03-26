@@ -60,7 +60,7 @@ public class VendorSettings extends AppCompatActivity {
         btnSave = (Button) findViewById(R.id.btn_save);
         edtName = (MaterialEditText) findViewById(R.id.edt_name);
         edtDescription = (MaterialEditText) findViewById(R.id.edt_description);
-        rdiDeliveries = (RadioButton) findViewById(R.id.rdi_deliveries);
+        //rdiDeliveries = (RadioButton) findViewById(R.id.rdi_deliveries);
         rdiRent = (RadioButton) findViewById(R.id.rdi_rent);
         rdiSell = (RadioButton) findViewById(R.id.rdi_sell);
         rdiServices = (RadioButton) findViewById(R.id.rdi_services);
@@ -77,13 +77,13 @@ public class VendorSettings extends AppCompatActivity {
             }
         });
 
-        rdiDeliveries.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
-                    defaultRadioSelect = 0;
-            }
-        });
+//        rdiDeliveries.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if(isChecked)
+//                    defaultRadioSelect = 0;
+//            }
+//        });
         rdiServices.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

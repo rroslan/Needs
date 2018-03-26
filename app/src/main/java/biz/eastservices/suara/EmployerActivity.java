@@ -125,19 +125,19 @@ public class EmployerActivity extends AppCompatActivity implements
                         break;
 
                     case R.id.action_services:
-                        selectedFragment = ServiceFragment.getInstance();
+                        selectedFragment = ServiceFragment.getInstance(mLastLocation);
                         toolbar.setTitle(getResources().getString(R.string.services_string));
                         break;
                     case R.id.action_transports:
-                        selectedFragment = TransportFragment.getInstance();
+                        selectedFragment = TransportFragment.getInstance(mLastLocation);
                         toolbar.setTitle(getResources().getString(R.string.transports_string));
                         break;
                     case R.id.action_sell:
-                        selectedFragment = SellFragment.getInstance();
+                        selectedFragment = SellFragment.getInstance(mLastLocation);
                         toolbar.setTitle(getResources().getString(R.string.buy_string));
                         break;
                     case R.id.action_rent:
-                        selectedFragment = RentFragment.getInstance();
+                        selectedFragment = RentFragment.getInstance(mLastLocation);
                         toolbar.setTitle(getResources().getString(R.string.rent_string));
                         break;
                 }
