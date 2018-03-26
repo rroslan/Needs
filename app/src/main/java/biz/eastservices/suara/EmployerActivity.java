@@ -23,8 +23,7 @@ import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
-import com.firebase.geofire.GeoFire;
-import com.firebase.geofire.GeoLocation;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -78,7 +77,7 @@ public class EmployerActivity extends AppCompatActivity implements
     SwitchButton mSwitchShowSecure;
 
     DatabaseReference vendorLocation;
-    GeoFire geoFire;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,9 +117,13 @@ public class EmployerActivity extends AppCompatActivity implements
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
+                if (ActivityCompat.checkSelfPermission(EmployerActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(EmployerActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+                mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
                 switch (item.getItemId()) {
                     case R.id.action_deliveries:
-                        selectedFragment = new DeliveryFragment();
+                        selectedFragment = DeliveryFragment.getInstance(mLastLocation);
                         toolbar.setTitle(getResources().getString(R.string.deliveries_string));
                         break;
 
