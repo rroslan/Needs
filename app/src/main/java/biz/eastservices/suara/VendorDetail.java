@@ -2,9 +2,11 @@ package biz.eastservices.suara;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,12 +37,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class VendorDetail extends AppCompatActivity implements RatingDialogListener {
 
-    Button btnWhatsApp,btnWaze,btnRating,btnCall;
+    Button btnWhatsApp, btnWaze, btnRating, btnCall;
     RatingBar ratingBar;
-    TextView txt_name,txt_description;
+    TextView txt_name, txt_description;
     CircleImageView circleImageView;
 
-    String uri ="",whatAppUri="";
+    String uri = "", whatAppUri = "";
     String smsNumber;
 
     ScrollView rootLayout;
@@ -50,28 +52,31 @@ public class VendorDetail extends AppCompatActivity implements RatingDialogListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_detail);
 
-        rootLayout = (ScrollView)findViewById(R.id.rootLayout);
+        rootLayout = (ScrollView) findViewById(R.id.rootLayout);
 
-        ratingBar = (RatingBar)findViewById(R.id.ratingBar);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 
-        circleImageView = (CircleImageView)findViewById(R.id.profile_image);
+        circleImageView = (CircleImageView) findViewById(R.id.profile_image);
 
-        txt_description = (TextView)findViewById(R.id.txt_description);
-        txt_name = (TextView)findViewById(R.id.txt_name);
+        txt_description = (TextView) findViewById(R.id.txt_description);
+        txt_name = (TextView) findViewById(R.id.txt_name);
 
-        btnRating = (Button)findViewById(R.id.btn_rating);
-        btnWaze = (Button)findViewById(R.id.btn_waze);
-        btnWhatsApp = (Button)findViewById(R.id.btn_whats_app);
-        btnCall = (Button)findViewById(R.id.btn_call);
+        btnRating = (Button) findViewById(R.id.btn_rating);
+        btnWaze = (Button) findViewById(R.id.btn_waze);
+        btnWhatsApp = (Button) findViewById(R.id.btn_whats_app);
+        btnCall = (Button) findViewById(R.id.btn_call);
 
 
-btnCall.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(Intent.ACTION_CALL);
+        btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
 
-        intent.setData(Uri.parse("tel:" + FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber()));
-        startActivity(intent);
+                intent.setData(Uri.parse("tel:" + Common.currentVendor.getPhone()));
+                if (ActivityCompat.checkSelfPermission(VendorDetail.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                   return;
+                }
+                startActivity(intent);
     }
 });
 
@@ -136,7 +141,7 @@ btnCall.setOnClickListener(new View.OnClickListener() {
                         txt_name.setText(vendor.getBusinessName());
 
                         uri = "waze://?ll="+vendor.getLat()+", "+vendor.getLng()+"&navigate=yes";
-                        whatAppUri="https://api.whatsapp.com/send?phone="+FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+                        whatAppUri="https://api.whatsapp.com/send?phone="+Common.currentVendor.getPhone();
                         smsNumber = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
                     }
 

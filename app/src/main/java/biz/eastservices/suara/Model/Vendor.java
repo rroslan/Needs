@@ -7,7 +7,7 @@ package biz.eastservices.suara.Model;
 public class Vendor {
     private String businessName;
     private String businessDescription;
-
+    private String phone;
     private String category;
     private String avatarUrl;
 
@@ -16,9 +16,10 @@ public class Vendor {
     public Vendor() {
     }
 
-    public Vendor(String businessName, String businessDescription, String category, String avatarUrl, double lat, double lng) {
+    public Vendor(String businessName, String businessDescription, String phone, String category, String avatarUrl, double lat, double lng) {
         this.businessName = businessName;
         this.businessDescription = businessDescription;
+        this.phone = phone;
         this.category = category;
         this.avatarUrl = avatarUrl;
         this.lat = lat;
@@ -71,5 +72,13 @@ public class Vendor {
 
     public void setLng(double lng) {
         this.lng = lng;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

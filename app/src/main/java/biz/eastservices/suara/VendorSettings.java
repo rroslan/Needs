@@ -234,6 +234,7 @@ public class VendorSettings extends AppCompatActivity {
 
         vendor.setBusinessName(name);
         vendor.setBusinessDescription(description);
+        vendor.setPhone(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber());
 
         vendor.setCategory(Common.convertTypeToCategory(defaultRadioSelect));
         if(Common.currentVendor != null) {
