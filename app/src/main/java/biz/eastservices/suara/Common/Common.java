@@ -9,11 +9,11 @@ import biz.eastservices.suara.Model.Vendor;
  */
 
 public class Common {
-    public static final String USER_TABLE_VENDOR="Vendors";
-    public static final String VENDOR_ONLINE="vendorsOnline";
+    public static final String USER_TABLE_VENDOR = "Vendors";
+    public static final String VENDOR_ONLINE = "vendorsOnline";
     public static final String USER_RATING = "Rating";
-    public static final int RESULT_CODE = 7777 ;
-    public static final String VENDOR_LOCATION ="vendorLocation" ;
+    public static final int RESULT_CODE = 7777;
+    public static final String VENDOR_LOCATION = "vendorLocation";
 
 
     public static boolean isDebug = false;
@@ -25,32 +25,30 @@ public class Common {
     public static final int SIGN_IN_REQUEST_CODE = 8888;
 
     public static Location currentLocation;
-    public static  String selected_uid_people="";
+    public static String selected_uid_people = "";
 
 
-    public static String convertTypeToCategory(int type)
-    {
-        if (type ==0)
-            return "Delivery";
-        else if (type ==1)
+    public static String convertTypeToCategory(int type) {
+        if (type == 0)
             return "Service";
-        else if (type ==2)
+        else if (type == 1)
+            return "Delivery";
+        else if (type == 2)
             return "Transport";
-        else if (type ==3)
+        else if (type == 3)
             return "Sell";
-        else if (type ==4)
+        else if (type == 4)
             return "Rent";
         else
             return "null";
     }
 
-    public static int convertCategoryToType(String type)
-    {
-        if (type.equals("Deliveries"))
-            return 0;
-        else if (type.equals("Services"))
+    public static int convertCategoryToType(String type) {
+        if (type.equals("Delivery"))
             return 1;
-        else if (type.equals("Transports"))
+        else if (type.equals("Service"))
+            return 0;
+        else if (type.equals("Transport"))
             return 2;
         else if (type.equals("Sell"))
             return 3;

@@ -37,7 +37,7 @@ public class VendorSettings extends AppCompatActivity {
 
     Button btnSave;
     MaterialEditText edtName, edtDescription;
-    RadioButton  rdiDeliveries, rdiServices, rdiTransports, rdiSell, rdiRent;
+    RadioButton rdiDeliveries, rdiServices, rdiTransports, rdiSell, rdiRent;
 
     CircleImageView avatar;
 
@@ -48,6 +48,7 @@ public class VendorSettings extends AppCompatActivity {
     StorageReference storageReference;
 
     Vendor vendor = new Vendor();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +66,8 @@ public class VendorSettings extends AppCompatActivity {
         rdiSell = (RadioButton) findViewById(R.id.rdi_sell);
         rdiServices = (RadioButton) findViewById(R.id.rdi_services);
 
-        rdiTransports= (RadioButton) findViewById(R.id.rdi_transport);
-        avatar = (CircleImageView)findViewById(R.id.profile_image);
+        rdiTransports = (RadioButton) findViewById(R.id.rdi_transport);
+        avatar = (CircleImageView) findViewById(R.id.profile_image);
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,38 +78,32 @@ public class VendorSettings extends AppCompatActivity {
             }
         });
 
-//        rdiDeliveries.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if(isChecked)
-//                    defaultRadioSelect = 0;
-//            }
-//        });
+
         rdiServices.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
-                    defaultRadioSelect = 1;
+                if (isChecked)
+                    defaultRadioSelect = 0;
             }
         });
         rdiTransports.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
+                if (isChecked)
                     defaultRadioSelect = 2;
             }
         });
         rdiSell.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
+                if (isChecked)
                     defaultRadioSelect = 3;
             }
         });
         rdiRent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
+                if (isChecked)
                     defaultRadioSelect = 4;
             }
         });
@@ -124,38 +119,73 @@ public class VendorSettings extends AppCompatActivity {
     }
 
     private void loadInformation() {
-        if(!Common.isDebug)
-        {
+        if (!Common.isDebug) {
             FirebaseDatabase.getInstance()
                     .getReference(Common.USER_TABLE_VENDOR)
                     .child(FirebaseAuth.getInstance().getUid())
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists())
-                            {
+                            if (dataSnapshot.exists()) {
                                 Vendor user = dataSnapshot.getValue(Vendor.class);
                                 Common.currentVendor = user;
 
-                                if( user.getAvatarUrl() != null)
-                                    if(!user.getAvatarUrl().isEmpty())
-                                            Picasso.with(getBaseContext())
-                                            .load(user.getAvatarUrl())
-                                            .placeholder(R.drawable.ic_terrain_black_24dp)
-                                            .error(R.drawable.ic_error_black_24dp)
+                                if (user.getAvatarUrl() != null)
+                                    if (!user.getAvatarUrl().isEmpty())
+                                        Picasso.with(getBaseContext())
+                                                .load(user.getAvatarUrl())
+                                                .placeholder(R.drawable.ic_terrain_black_24dp)
+                                                .error(R.drawable.ic_error_black_24dp)
+                                                .into(avatar);
+
+                                edtName.setText(user.getBusinessName());
+                                edtDescription.setText(user.getBusinessDescription());
+
+
+                                if (user.getCategory() != null) {
+                                    if (Common.convertCategoryToType(user.getCategory()) == 0)
+                                        rdiServices.setChecked(true);
+                                    else if (Common.convertCategoryToType(user.getCategory()) == 1)
+                                        rdiDeliveries.setChecked(true);
+                                    else if (Common.convertCategoryToType(user.getCategory()) == 2)
+                                        rdiTransports.setChecked(true);
+                                    else if (Common.convertCategoryToType(user.getCategory()) == 3)
+                                        rdiSell.setChecked(true);
+                                    else if (Common.convertCategoryToType(user.getCategory()) == 4)
+                                        rdiRent.setChecked(true);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+        } else {
+            FirebaseDatabase.getInstance()
+                    .getReference(Common.USER_TABLE_VENDOR)
+                    .child("c5f7ddd0-58c9-4920-849e-8f1fe8f0f096")
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                Vendor user = dataSnapshot.getValue(Vendor.class);
+
+                                if (user.getAvatarUrl() != null)
+                                    Picasso.with(getBaseContext())
+                                            .load(vendor.getAvatarUrl())
                                             .into(avatar);
 
                                 edtName.setText(user.getBusinessName());
                                 edtDescription.setText(user.getBusinessDescription());
 
 
-
-
-                                if(user.getCategory() != null) {
+                                if (user.getCategory() != null) {
                                     if (Common.convertCategoryToType(user.getCategory()) == 0)
-                                        rdiDeliveries.setChecked(true);
-                                    else if (Common.convertCategoryToType(user.getCategory()) == 1)
                                         rdiServices.setChecked(true);
+                                    else if (Common.convertCategoryToType(user.getCategory()) == 1)
+                                        rdiDeliveries.setChecked(true);
                                     else if (Common.convertCategoryToType(user.getCategory()) == 2)
                                         rdiTransports.setChecked(true);
                                     else if (Common.convertCategoryToType(user.getCategory()) == 3)
@@ -172,62 +202,18 @@ public class VendorSettings extends AppCompatActivity {
                         }
                     });
         }
-        else
-        {
-            FirebaseDatabase.getInstance()
-                    .getReference(Common.USER_TABLE_VENDOR)
-                    .child("c5f7ddd0-58c9-4920-849e-8f1fe8f0f096")
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                           if(dataSnapshot.exists())
-                           {
-                               Vendor user = dataSnapshot.getValue(Vendor.class);
-
-                               if(user.getAvatarUrl() != null)
-                                   Picasso.with(getBaseContext())
-                                           .load(vendor.getAvatarUrl())
-                                           .into(avatar);
-
-                               edtName.setText(user.getBusinessName());
-                               edtDescription.setText(user.getBusinessDescription());
-
-
-                               if(user.getCategory() != null) {
-                                   if (Common.convertCategoryToType(user.getCategory()) == 0)
-                                       rdiDeliveries.setChecked(true);
-                                   else if (Common.convertCategoryToType(user.getCategory()) == 1)
-                                       rdiServices.setChecked(true);
-                                   else if (Common.convertCategoryToType(user.getCategory()) == 2)
-                                       rdiTransports.setChecked(true);
-                                   else if (Common.convertCategoryToType(user.getCategory()) == 3)
-                                       rdiSell.setChecked(true);
-                                   else if (Common.convertCategoryToType(user.getCategory()) == 4)
-                                       rdiRent.setChecked(true);
-                               }
-                           }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-        }
     }
 
     private void saveInformation() {
 
         String name = edtName.getText().toString();
         String description = edtDescription.getText().toString();
-        if(name.isEmpty() || name == null)
-        {
+        if (name.isEmpty() || name == null) {
             Toast.makeText(this, "Please enter name !", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if(description.isEmpty() || description == null)
-        {
+        if (description.isEmpty() || description == null) {
             Toast.makeText(this, "Please enter description !", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -237,50 +223,47 @@ public class VendorSettings extends AppCompatActivity {
         vendor.setPhone(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber());
 
         vendor.setCategory(Common.convertTypeToCategory(defaultRadioSelect));
-        if(Common.currentVendor != null) {
+        if (Common.currentVendor != null) {
             if (Common.currentVendor.getAvatarUrl() != null)
                 if (!Common.currentVendor.getAvatarUrl().isEmpty())
                     vendor.setAvatarUrl(Common.currentVendor.getAvatarUrl());
         }
 
-       if(!Common.isDebug)
-       {
-           FirebaseDatabase.getInstance().getReference(Common.USER_TABLE_VENDOR)
-                   .child(FirebaseAuth.getInstance().getUid())
-                   .setValue(vendor)
-                   .addOnSuccessListener(new OnSuccessListener<Void>() {
-                       @Override
-                       public void onSuccess(Void aVoid) {
-                           Toast.makeText(VendorSettings.this, "Updated !", Toast.LENGTH_SHORT).show();
-                           finish();
-                       }
-                   })
-                   .addOnFailureListener(new OnFailureListener() {
-                       @Override
-                       public void onFailure(@NonNull Exception e) {
-                           Toast.makeText(VendorSettings.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                       }
-                   });
-       }
-       else
-       {
-           FirebaseDatabase.getInstance().getReference(Common.USER_TABLE_VENDOR)
-                   .child("c5f7ddd0-58c9-4920-849e-8f1fe8f0f096")
-                   .setValue(vendor)
-                   .addOnSuccessListener(new OnSuccessListener<Void>() {
-                       @Override
-                       public void onSuccess(Void aVoid) {
-                           Toast.makeText(VendorSettings.this, "Updated !", Toast.LENGTH_SHORT).show();
-                           finish();
-                       }
-                   })
-                   .addOnFailureListener(new OnFailureListener() {
-                       @Override
-                       public void onFailure(@NonNull Exception e) {
-                           Toast.makeText(VendorSettings.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                       }
-                   });
-       }
+        if (!Common.isDebug) {
+            FirebaseDatabase.getInstance().getReference(Common.USER_TABLE_VENDOR)
+                    .child(FirebaseAuth.getInstance().getUid())
+                    .setValue(vendor)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(VendorSettings.this, "Updated !", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(VendorSettings.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } else {
+            FirebaseDatabase.getInstance().getReference(Common.USER_TABLE_VENDOR)
+                    .child("c5f7ddd0-58c9-4920-849e-8f1fe8f0f096")
+                    .setValue(vendor)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(VendorSettings.this, "Updated !", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(VendorSettings.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
 
     }
 
