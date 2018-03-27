@@ -60,7 +60,7 @@ public class TransportFragment extends Fragment {
     public TransportFragment() {
         database = FirebaseDatabase.getInstance();
         candidates = database.getReference(Common.VENDOR_ONLINE);
-        Query query = candidates.orderByChild("category").equalTo("Transports");
+        Query query = candidates.orderByChild("category").equalTo("Transport");
         options = new FirebaseRecyclerOptions.Builder<Vendor>()
                 .setQuery(query,Vendor.class)
                 .build();

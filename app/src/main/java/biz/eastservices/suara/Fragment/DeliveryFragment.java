@@ -64,7 +64,7 @@ public class DeliveryFragment extends Fragment {
 
         database = FirebaseDatabase.getInstance();
         candidates = database.getReference(Common.VENDOR_ONLINE);
-        Query query = candidates.orderByChild("category").equalTo("Deliveries");
+        Query query = candidates.orderByChild("category").equalTo("Delivery");
         options = new FirebaseRecyclerOptions.Builder<Vendor>()
                 .setQuery(query,Vendor.class)
                 .build();

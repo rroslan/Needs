@@ -59,7 +59,7 @@ public class ServiceFragment extends Fragment {
     public ServiceFragment() {
         database = FirebaseDatabase.getInstance();
         candidates = database.getReference(Common.VENDOR_ONLINE);
-        Query query = candidates.orderByChild("category").equalTo("Services");
+        Query query = candidates.orderByChild("category").equalTo("Service");
         options = new FirebaseRecyclerOptions.Builder<Vendor>()
                 .setQuery(query,Vendor.class)
                 .build();

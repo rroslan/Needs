@@ -31,11 +31,11 @@ public class Common {
     public static String convertTypeToCategory(int type)
     {
         if (type ==0)
-            return "Deliveries";
+            return "Delivery";
         else if (type ==1)
-            return "Services";
+            return "Service";
         else if (type ==2)
-            return "Transports";
+            return "Transport";
         else if (type ==3)
             return "Sell";
         else if (type ==4)
