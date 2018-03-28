@@ -86,6 +86,13 @@ public class VendorSettings extends AppCompatActivity {
                     defaultRadioSelect = 0;
             }
         });
+        rdiDeliveries.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    defaultRadioSelect = 1;
+            }
+        });
         rdiTransports.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -101,7 +108,7 @@ public class VendorSettings extends AppCompatActivity {
             }
         });
         rdiRent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
+            //@Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked)
                     defaultRadioSelect = 4;
