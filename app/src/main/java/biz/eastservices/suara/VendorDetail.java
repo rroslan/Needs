@@ -62,6 +62,16 @@ public class VendorDetail extends AppCompatActivity implements RatingDialogListe
         txt_description = (TextView) findViewById(R.id.txt_description);
         txt_name = (TextView) findViewById(R.id.txt_name);
         txt_website = (TextView) findViewById(R.id.txt_website);
+        txt_website.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = txt_website.getText().toString();
+                if (!url.startsWith("http://") && !url.startsWith("https://"))
+                    url = "http://" + url;
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+            }
+        });
 
         btnRating = (Button) findViewById(R.id.btn_rating);
         btnWaze = (Button) findViewById(R.id.btn_waze);
