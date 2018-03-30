@@ -10,20 +10,30 @@ public class Vendor {
     private String phone;
     private String category;
     private String avatarUrl;
+    private String website;
 
     private double lat,lng;
 
     public Vendor() {
     }
 
-    public Vendor(String businessName, String businessDescription, String phone, String category, String avatarUrl, double lat, double lng) {
+    public Vendor(String businessName, String businessDescription, String phone, String category, String avatarUrl, String website, double lat, double lng) {
         this.businessName = businessName;
         this.businessDescription = businessDescription;
         this.phone = phone;
         this.category = category;
         this.avatarUrl = avatarUrl;
+        this.website = website;
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
     public String getBusinessName() {

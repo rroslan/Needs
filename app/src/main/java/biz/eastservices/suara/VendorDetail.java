@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
@@ -39,7 +40,7 @@ public class VendorDetail extends AppCompatActivity implements RatingDialogListe
 
     Button btnWhatsApp, btnWaze, btnRating, btnCall;
     RatingBar ratingBar;
-    TextView txt_name, txt_description;
+    TextView txt_name, txt_description,txt_website;
     CircleImageView circleImageView;
 
     String uri = "", whatAppUri = "";
@@ -60,6 +61,7 @@ public class VendorDetail extends AppCompatActivity implements RatingDialogListe
 
         txt_description = (TextView) findViewById(R.id.txt_description);
         txt_name = (TextView) findViewById(R.id.txt_name);
+        txt_website = (TextView) findViewById(R.id.txt_website);
 
         btnRating = (Button) findViewById(R.id.btn_rating);
         btnWaze = (Button) findViewById(R.id.btn_waze);
@@ -139,6 +141,8 @@ public class VendorDetail extends AppCompatActivity implements RatingDialogListe
 
                         txt_description.setText(vendor.getBusinessDescription());
                         txt_name.setText(vendor.getBusinessName());
+                        txt_website.setText(vendor.getWebsite());
+                        txt_website.setMovementMethod(LinkMovementMethod.getInstance());
 
                         uri = "waze://?ll="+vendor.getLat()+", "+vendor.getLng()+"&navigate=yes";
                         whatAppUri="https://api.whatsapp.com/send?phone="+Common.currentVendor.getPhone();

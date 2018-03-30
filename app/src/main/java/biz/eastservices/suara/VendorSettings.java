@@ -36,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class VendorSettings extends AppCompatActivity {
 
     Button btnSave;
-    MaterialEditText edtName, edtDescription;
+    MaterialEditText edtName, edtDescription,edtWebsite;
     RadioButton rdiDeliveries, rdiServices, rdiTransports, rdiSell, rdiRent;
 
     CircleImageView avatar;
@@ -61,6 +61,7 @@ public class VendorSettings extends AppCompatActivity {
         btnSave = (Button) findViewById(R.id.btn_save);
         edtName = (MaterialEditText) findViewById(R.id.edt_name);
         edtDescription = (MaterialEditText) findViewById(R.id.edt_description);
+        edtWebsite = (MaterialEditText) findViewById(R.id.edt_website);
         rdiDeliveries = (RadioButton) findViewById(R.id.rdi_deliveries);
         rdiRent = (RadioButton) findViewById(R.id.rdi_rent);
         rdiSell = (RadioButton) findViewById(R.id.rdi_sell);
@@ -147,6 +148,7 @@ public class VendorSettings extends AppCompatActivity {
 
                                 edtName.setText(user.getBusinessName());
                                 edtDescription.setText(user.getBusinessDescription());
+                                edtWebsite.setText(user.getWebsite());
 
 
                                 if (user.getCategory() != null) {
@@ -227,6 +229,7 @@ public class VendorSettings extends AppCompatActivity {
 
         vendor.setBusinessName(name);
         vendor.setBusinessDescription(description);
+        vendor.setWebsite(edtWebsite.getText().toString());
         vendor.setPhone(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber());
 
         vendor.setCategory(Common.convertTypeToCategory(defaultRadioSelect));
