@@ -75,6 +75,8 @@ public class ServiceFragment extends Fragment {
                 {
                     holder.txt_description.setText(model.getBusinessDescription());
                     holder.txt_name.setText(model.getBusinessName());
+                    holder.txt_distance.setText(new StringBuilder("Distance : ").append(distanceInKm).append(" km").toString());
+
 
                     holder.setItemClickListener(new ItemClickListener() {
                         @Override

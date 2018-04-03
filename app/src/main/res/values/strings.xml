@@ -1,4 +1,5 @@
 <resources>
+    <string name="help_string">Help</string>
     <string name="website">Website url</string>
     <string name="app_name">Needs</string>
     <string name="settings_string">Settings</string>

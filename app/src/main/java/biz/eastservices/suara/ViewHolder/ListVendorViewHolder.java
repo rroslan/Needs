@@ -19,13 +19,14 @@ public class ListVendorViewHolder extends RecyclerView.ViewHolder implements Vie
 
     public ItemClickListener itemClickListener;
 
-    public TextView txt_name,txt_description;
+    public TextView txt_name,txt_description,txt_distance;
 
 
     public ListVendorViewHolder(View itemView) {
         super(itemView);
         txt_name = (TextView)itemView.findViewById(R.id.txt_name);
         txt_description = (TextView)itemView.findViewById(R.id.txt_description);
+        txt_distance = (TextView)itemView.findViewById(R.id.txt_distance);
         cardView = (RelativeLayout)itemView.findViewById(R.id.card_view);
         itemView.setOnClickListener(this);
     }

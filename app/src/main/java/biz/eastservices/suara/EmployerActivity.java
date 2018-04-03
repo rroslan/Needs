@@ -49,7 +49,12 @@ import biz.eastservices.suara.Fragment.RentFragment;
 import biz.eastservices.suara.Fragment.SellFragment;
 import biz.eastservices.suara.Fragment.ServiceFragment;
 import biz.eastservices.suara.Fragment.TransportFragment;
+import biz.eastservices.suara.Helper.NeedsTerm;
 import biz.eastservices.suara.Model.Vendor;
+import de.psdev.licensesdialog.LicensesDialog;
+import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
+import de.psdev.licensesdialog.licenses.License;
+import de.psdev.licensesdialog.model.Notice;
 import dmax.dialog.SpotsDialog;
 
 public class EmployerActivity extends AppCompatActivity implements
@@ -551,6 +556,18 @@ public class EmployerActivity extends AppCompatActivity implements
                 Toast.makeText(this, "" + clipboard.getText(), Toast.LENGTH_SHORT).show();
             } else
                 Toast.makeText(this, "No location to copy ! Please enable INTERNET", Toast.LENGTH_SHORT).show();
+        }
+        else if(item.getItemId() == R.id.action_help)
+        {
+            final String name = "Needs";
+            final String url = "https://www.eastservices.biz";
+            final String copyright = "Copyright 2018 EDMTDev";
+            final License license = new NeedsTerm();
+            final Notice notice = new Notice(name, url, copyright, license);
+            new LicensesDialog.Builder(this)
+                    .setNotices(notice)
+                    .build()
+                    .show();
         }
         return super.onOptionsItemSelected(item);
     }
